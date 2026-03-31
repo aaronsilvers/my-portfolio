@@ -69,7 +69,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 50;
-      padding: 1.2rem 3rem;
+      padding: 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -83,19 +83,21 @@
     }
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       letter-spacing: 2px;
       color: var(--accent);
+      flex-shrink: 0;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: nowrap; }
     .nav-links a {
       font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.62rem;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--accent); }
 
@@ -656,14 +658,7 @@
         <div class="about-card-icon">✉️</div>
         <div class="about-card-text">
           <strong>Email</strong>
-          marinetanker83@gmail.com
-        </div>
-      </div>
-      <div class="about-card-item">
-        <div class="about-card-icon">📞</div>
-        <div class="about-card-text">
-          <strong>Phone</strong>
-          (310) 614-8424
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a474b5843444f5e4b44414f5812196a4d474b434604494547">[email&#160;protected]</a>
         </div>
       </div>
       <div class="about-card-item">
@@ -855,12 +850,10 @@
     <h2>Let's <span style="color:var(--accent)">Build</span></h2>
     <p class="contact-sub">Open to full-stack engineering roles, freelance projects, and interesting problems worth solving.</p>
     <div class="contact-links">
-      <a href="mailto:marinetanker83@gmail.com" class="contact-link primary">
-        ✉ marinetanker83@gmail.com
+      <a href="/cdn-cgi/l/email-protection#4924283b20272c3d2827222c3b717a092e24282025672a2624" class="contact-link primary">
+        ✉ <span class="__cf_email__" data-cfemail="f09d9182999e9584919e9b9582c8c3b0979d91999cde939f9d">[email&#160;protected]</span>
       </a>
-      <a href="tel:3106148424" class="contact-link">
-        📞 (310) 614-8424
-      </a>
+
     </div>
   </div>
 </section>
@@ -871,7 +864,7 @@
   <div class="footer-text">USMC VETERAN · FULL STACK ENGINEER · NYC</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // CURSOR
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -886,15 +879,4 @@
 
   // NAV SCROLL
   window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  // INTERSECTION OBSERVER
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in, .timeline-item, .project-card').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+    document.getElementById('navbar').classList.t
