@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Serge Silvers-Lamas</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface2); border: 1px solid var(--border); padding: 2rem;
+      clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+      transition: all 0.3s; opacity: 0; transform: translateY(20px);
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-number { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--border); line-height: 1; margin-bottom: 0.5rem; }
+    .project-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+    .tech-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tech-badge {
+      padding: 0.25rem 0.6rem;
+      background: rgba(240,165,0,0.1); border: 1px solid rgba(240,165,0,0.3);
+      color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 1px; border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">SSL</a>
+  <ul class="nav-links">
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../experience/index.html">Experience</a></li>
+    <li><a href="index.html" class="active">Projects</a></li>
+    <li><a href="../skills/index.html">Skills</a></li>
+    <li><a href="../education/index.html">Education</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="section-content">
+    <div class="section-label">// 03 — Projects</div>
+    <h2>What I've <span style="color:var(--accent)">Built</span></h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-number">01</div>
+        <div class="project-name">Hobby Connect</div>
+        <div class="project-desc">Full-stack social platform connecting people through shared hobbies. Features JWT auth, user profiles, real-time messaging via WebSockets, and a clean responsive UI. Built solo from architecture to deployment.</div>
+        <div class="tech-badges">
+          <span class="tech-badge">FastAPI</span>
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">WebSockets</span>
+          <span class="tech-badge">JWT Auth</span>
+          <span class="tech-badge">Docker</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-number">02</div>
+        <div class="project-name">CarCar</div>
+        <div class="project-desc">Microservice-based automobile dealership management system. CRUD REST endpoints for inventory, service appointments, and sales. Automated poller syncs automobile data across services in real time.</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Django</span>
+          <span class="tech-badge">Microservices</span>
+          <span class="tech-badge">REST API</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="../experience/index.html" class="page-nav-btn">← Experience</a>
+    <span class="page-nav-center">03 / 06</span>
+    <a href="../skills/index.html" class="page-nav-btn primary">Skills →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SERGE SILVERS-LAMAS</div>
+  <div class="footer-text">USMC VETERAN · FULL STACK ENGINEER · NYC</div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='6px';cursor.style.height='6px';});el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';});});
+  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+  document.querySelectorAll('.project-card').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

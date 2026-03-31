@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Serge Silvers-Lamas</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .contact-wrap { text-align: center; position: relative; }
+    .contact-glow {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(224,92,26,0.1) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;
+    }
+    .contact-inner { position: relative; z-index: 2; }
+    .contact-sub { font-size: 1rem; color: var(--muted); margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 1.8rem; border: 1px solid var(--border); color: var(--text);
+      text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.78rem;
+      letter-spacing: 1px;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(240,165,0,0.05); }
+    .contact-link.primary { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+    .contact-link.primary:hover { background: #fff; border-color: #fff; }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">SSL</a>
+  <ul class="nav-links">
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../experience/index.html">Experience</a></li>
+    <li><a href="../projects/index.html">Projects</a></li>
+    <li><a href="../skills/index.html">Skills</a></li>
+    <li><a href="../education/index.html">Education</a></li>
+    <li><a href="index.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="section-content">
+    <div class="contact-wrap">
+      <div class="contact-glow"></div>
+      <div class="contact-inner">
+        <div class="section-label" style="text-align:center">// 06 — Contact</div>
+        <h2>Let's <span style="color:var(--accent)">Build</span></h2>
+        <p class="contact-sub">Open to full-stack engineering roles, freelance projects, and interesting problems worth solving. I respond fast.</p>
+        <div class="contact-links">
+          <a href="mailto:marinetanker83@gmail.com" class="contact-link primary">✉ marinetanker83@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="../education/index.html" class="page-nav-btn">← Education</a>
+    <span class="page-nav-center">06 / 06</span>
+    <a href="../index.html" class="page-nav-btn primary">Back to Home →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SERGE SILVERS-LAMAS</div>
+  <div class="footer-text">USMC VETERAN · FULL STACK ENGINEER · NYC</div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='6px';cursor.style.height='6px';});el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';});});
+</script>
+</body>
+</html>

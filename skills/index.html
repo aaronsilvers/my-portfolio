@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skills — Serge Silvers-Lamas</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-group {
+      background: var(--surface); border: 1px solid var(--border); padding: 1.75rem;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: var(--accent); }
+    .skill-group-title {
+      font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--accent);
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+    }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      padding: 0.35rem 0.75rem; background: var(--surface2); border: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--text); border-radius: 2px; transition: all 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">SSL</a>
+  <ul class="nav-links">
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../experience/index.html">Experience</a></li>
+    <li><a href="../projects/index.html">Projects</a></li>
+    <li><a href="index.html" class="active">Skills</a></li>
+    <li><a href="../education/index.html">Education</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="section-content">
+    <div class="section-label">// 04 — Skills</div>
+    <h2>The <span style="color:var(--accent)">Arsenal</span></h2>
+    <div class="skills-grid">
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-tag">Swift UI</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript ES6+</span><span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML5</span><span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Back-End</div>
+        <div class="skill-list">
+          <span class="skill-tag">Django</span><span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Front-End</div>
+        <div class="skill-list">
+          <span class="skill-tag">React.js</span><span class="skill-tag">DOM Manipulation</span>
+          <span class="skill-tag">WebSockets</span><span class="skill-tag">Responsive Design</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">QA & Tools</div>
+        <div class="skill-list">
+          <span class="skill-tag">JIRA</span><span class="skill-tag">Charles Proxy</span>
+          <span class="skill-tag">TestRail</span><span class="skill-tag">OneTrust</span>
+          <span class="skill-tag">CCPA</span><span class="skill-tag">GDPR</span>
+          <span class="skill-tag">GitLab</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">System Design</div>
+        <div class="skill-list">
+          <span class="skill-tag">Microservices</span><span class="skill-tag">Domain-Driven Design</span>
+          <span class="skill-tag">Event Sourcing</span><span class="skill-tag">REST APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="../projects/index.html" class="page-nav-btn">← Projects</a>
+    <span class="page-nav-center">04 / 06</span>
+    <a href="../education/index.html" class="page-nav-btn primary">Education →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SERGE SILVERS-LAMAS</div>
+  <div class="footer-text">USMC VETERAN · FULL STACK ENGINEER · NYC</div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='6px';cursor.style.height='6px';});el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';});});
+  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education — Serge Silvers-Lamas</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .edu-card {
+      border: 1px solid var(--border); padding: 1.75rem; background: var(--surface2);
+      transition: all 0.3s;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    }
+    .edu-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .edu-year { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--accent2); letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .edu-degree { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
+    .edu-school { font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">SSL</a>
+  <ul class="nav-links">
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../experience/index.html">Experience</a></li>
+    <li><a href="../projects/index.html">Projects</a></li>
+    <li><a href="../skills/index.html">Skills</a></li>
+    <li><a href="index.html" class="active">Education</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="section-content">
+    <div class="section-label">// 05 — Education</div>
+    <h2>The <span style="color:var(--accent)">Foundation</span></h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-year">FEB 2024</div>
+        <div class="edu-degree">Advanced Software Engineering Immersive</div>
+        <div class="edu-school">Hack Reactor</div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-year">MAR 2024</div>
+        <div class="edu-degree">Programming Fundamentals in Swift</div>
+        <div class="edu-school">Coursera</div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-year">AUG 2016</div>
+        <div class="edu-degree">B.S. Business Management</div>
+        <div class="edu-school">University of Phoenix</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="../skills/index.html" class="page-nav-btn">← Skills</a>
+    <span class="page-nav-center">05 / 06</span>
+    <a href="../contact/index.html" class="page-nav-btn primary">Contact →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SERGE SILVERS-LAMAS</div>
+  <div class="footer-text">USMC VETERAN · FULL STACK ENGINEER · NYC</div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='6px';cursor.style.height='6px';});el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';});});
+  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
